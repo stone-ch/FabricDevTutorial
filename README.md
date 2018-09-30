@@ -1,7 +1,4 @@
-# FabricDevTutorial-CardChain
-This is a tutorial for Hyperledger Fabric development. I will show you the full proccess of developing a Fabric application -- CardChain.
-
-# Fabric应用开发教程——CardChain
+# Fabric应用开发教程
 这是一个Hyperledger Fabric的开发教程，本教程将通过一个Fabric项目——CardChain演示Fabric应用的完整开发流程。
 
 开发环境：
