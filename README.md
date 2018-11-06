@@ -2,7 +2,7 @@
 这是一个Hyperledger Fabric的开发教程，本教程将通过一个Fabric项目——CardChain演示Fabric应用的完整开发流程。
 
 开发环境：
-- Fabric v1.2.0
+- Fabric v1.3.0
 - Ubuntu 18.04
 - go v1.10.1
 - node v8.10.0
