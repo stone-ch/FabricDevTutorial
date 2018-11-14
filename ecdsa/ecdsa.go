@@ -151,7 +151,7 @@ var errZeroParam = errors.New("zero parameter")
 // private key's curve order, the hash will be truncated to that length.  It
 // returns the signature as a pair of integers. The security of the private key
 // depends on the entropy of rand.
-func Sign(rand io.Reader, priv *PrivateKey, hash []byte) (r, s *big.Int, err error) {
+func Sign(rand io.Reader, priv *PrivateKey, hash []byte) (r, s_inv *big.Int, err error) {
 	// Get min(log2(q) / 2, 256) bits of entropy from rand.
 	entropylen := (priv.Curve.Params().BitSize + 7) / 16
 	if entropylen > 32 {
@@ -190,7 +190,7 @@ func Sign(rand io.Reader, priv *PrivateKey, hash []byte) (r, s *big.Int, err err
 	if N.Sign() == 0 {
 		return nil, nil, errZeroParam
 	}
-	var k, kInv *big.Int
+	var k, kInv, s *big.Int
 	for {
 		for {
 			k, err = randFieldElement(c, csprng)
@@ -213,7 +213,7 @@ func Sign(rand io.Reader, priv *PrivateKey, hash []byte) (r, s *big.Int, err err
 		}
 
 		e := hashToInt(hash, c)
-		s = new(big.Int).Mul(priv.D, r)
+        s = new(big.Int).Mul(priv.D, r)
 		s.Add(s, e)
 		s.Mul(s, kInv)
 		s.Mod(s, N) // N != 0
@@ -222,34 +222,38 @@ func Sign(rand io.Reader, priv *PrivateKey, hash []byte) (r, s *big.Int, err err
 		}
 	}
 
+    if r.Sign() <= 0 || s.Sign() <= 0 {
+        return
+	}
+	if r.Cmp(N) >= 0 || s.Cmp(N) >= 0 {
+        return
+	}
+
+	if in, ok := c.(invertible); ok {
+		s_inv = in.Inverse(s)
+	} else {
+		s_inv = new(big.Int).ModInverse(s, N)
+	}
+
 	return
 }
 
 // Verify verifies the signature in r, s of hash using the public key, pub. Its
 // return value records whether the signature is valid.
-func Verify(pub *PublicKey, hash []byte, r, s *big.Int) bool {
+func Verify(pub *PublicKey, hash []byte, r, s_inv *big.Int) bool {
+    if s_inv == nil || r == nil {
+        return false
+    }
+
 	// See [NSA] 3.4.2
 	c := pub.Curve
 	N := c.Params().N
 
-	if r.Sign() <= 0 || s.Sign() <= 0 {
-		return false
-	}
-	if r.Cmp(N) >= 0 || s.Cmp(N) >= 0 {
-		return false
-	}
 	e := hashToInt(hash, c)
 
-	var w *big.Int
-	if in, ok := c.(invertible); ok {
-		w = in.Inverse(s)
-	} else {
-		w = new(big.Int).ModInverse(s, N)
-	}
-
-	u1 := e.Mul(e, w)
+	u1 := e.Mul(e, s_inv)
 	u1.Mod(u1, N)
-	u2 := w.Mul(r, w)
+	u2 := s_inv.Mul(r, s_inv)
 	u2.Mod(u2, N)
 
 	// Check if implements S1*g + S2*p

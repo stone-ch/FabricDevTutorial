@@ -21,9 +21,14 @@ func main() {
 		fmt.Printf("public key invalid: %s", err)
 	}
 
-	r2, s, err := ecdsa.Sign(rand.Reader, k, digest)
+    hashed := []byte("testing")
+	r2, s, err := ecdsa.Sign(rand.Reader, priv, hashed)
 	if err != nil {
-		return nil, err
+		return
 	}
+    fmt.Printf("r2: %s, s: %s\n", r2, s)
+
+    verify := ecdsa.Verify(&priv.PublicKey, hashed, r2, s)
+    fmt.Printf("verify result is: %s \n", verify)
 
 }
