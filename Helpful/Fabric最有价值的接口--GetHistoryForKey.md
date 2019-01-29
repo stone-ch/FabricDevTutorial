@@ -1,4 +1,4 @@
-## Fabric 最有价值的接口-- GetHistoryForKey
+## Fabric 最有价值的接口 -- GetHistoryForKey
 
 #### 写在前边
 
@@ -18,6 +18,6 @@ GetHistoryForKey() 的功能是根据 key 查询历史记录。只有这个查�
 
 可以在链码中使用 PutState(key, value) 写入一条记录，然后使用 GetState(key) 和 GetHistoryForKey(key) 分别获取记录。然后直接把 CouchDB 中的 key 对应的数据改了，再使用 GetState(key) 和 GetHistoryForKey(key) 查询的时候，你会发现，GetState(key) 获取到的数据是改了 CouchDB 中数据之后的，而 GetHistoryForKey(key) 得到的才是真正的数据。
 
-实验步骤可以参考 (https://www.cnblogs.com/studyzy/p/7101136.html)[https://www.cnblogs.com/studyzy/p/7101136.html] 这篇博文。
+实验步骤可以参考 [https://www.cnblogs.com/studyzy/p/7101136.html](https://www.cnblogs.com/studyzy/p/7101136.html)这篇博文。
 
 
