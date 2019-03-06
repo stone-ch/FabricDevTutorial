@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css.css">
+
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#queryagreementbyrange").click(function(){
+		$.ajax({
+			type:'GET',
+	        url: 'http://localhost:3000/queryagreementbyrange',
+	        dataType: 'jsonp',
+	        jsonp: "callback",
+	        jsonpCallback:"successCallback",
+	        data: {
+	               	orgid: $("#orgid").val()
+	              },
+			success:function(result){
+				var str = ""
+				for (var i = 0; i < result.length; i++) {
+					str += '<tr><td class="btbg1 font-center">' + result[i]["Record"]["AgreementID"] + '</td><td class="btbg1 font-center">' + result[i]["Record"]["AgreementCount"] + '</td><td class="btbg1 font-center">' + result[i]["Record"]["AgreementCreateTime"] + '</td><td class="btbg1 font-center">' + result[i]["Record"]["AgreementDeadline"] + '</td><td class="btbg1 font-center">' + result[i]["Record"]["AgreementOrg"] + '</td><td class="btbg1 font-center">' + result[i]["Record"]["AgreementPrice"] + '</td><td class="btbg1 font-center">' + result[i]["Record"]["AgreementDescription"] + '</td></tr>'
+					}
+				$("#test").html('<tr><td class="btbg font-center titfont">合约ID</td><td class="btbg font-center titfont">合约次数</td><td class="btbg font-center titfont">创建时间</td><td class="btbg font-center titfont">失效时间</td><td class="btbg font-center titfont">合约组织</td><td class="btbg font-center titfont">合约价格</td>	<td class="btbg font-center titfont">描述</td></tr>' + str);		
+			},
+			error:function(e){
+	            //失败执行
+	            alert(e.status+','+ e.statusText);
+        }
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li><a class="active" href="issuecard.html">发卡</a></li>
+	    <li><a href="querycardbycardid.html">查询卡</a></li>
+	    <li><a href="makeagreement.html">发布合约</a></li>
+	    <li><a href="queryagreementbyrange.html">查询所有合约</a></li>
+	    <li><a href="queryagreementbyagreementid.html">查询合约</a></li>
+	    <li><a href="queryuagrbyrange.html">查询所有参与的合约</a></li>
+	    <li><a href="queryuagrbyuagrid.html">查询参与的合约</a></li>
+	    <li><a href="maketranscation.html">交易</a></li>
+	    <li><a href="querytranscationbycardid.html">查询交易</a></li>
+	</ul>
+
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+		<div id="Header"><center><H1>CardChain-查询组织创建的合约（优惠）</H1></center></div>
+        <button id="queryagreementbyrange">查询组织创建的合约（优惠）</button>
+	    <form>
+	    	<fieldset>
+	    		<label>组织ID</label>
+	    		<select id="orgid">
+					<option value="OrgBarberMSP">OrgBarberMSP</option>
+					<option value="OrgSupermarketMSP">OrgSupermarketMSP</option>>
+				</select></br>
+	    	</fieldset>
+	    </form>
+        <table id="test" width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#cccccc" class="tabtop13" align="center">
+			<tr>
+				<td class="btbg font-center titfont">合约ID</td>
+				<td class="btbg font-center titfont">合约次数</td>
+				<td class="btbg font-center titfont">创建时间</td>
+				<td class="btbg font-center titfont">失效时间</td>
+				<td class="btbg font-center titfont">合约组织</td>
+				<td class="btbg font-center titfont">合约价格</td>
+				<td class="btbg font-center titfont">描述</td>
+			</tr>
+			<tr>
+				<td class="btbg1 font-center">&nbsp;</td>
+				<td class="btbg1 font-center">&nbsp;</td>
+				<td class="btbg1 font-center">&nbsp;</td>
+				<td class="btbg1 font-center">&nbsp;</td>
+				<td class="btbg1 font-center">&nbsp;</td>
+				<td class="btbg1 font-center">&nbsp;</td>
+				<td class="btbg1 font-center">&nbsp;</td>
+			</tr>
+		</table>
+    </div>
+</body>
+</html>

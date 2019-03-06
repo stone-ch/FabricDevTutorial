@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CardChain</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#queryuagrbyuagrid").click(function(){
+		$.ajax({
+			type:'GET',
+	        url: 'http://localhost:3000/queryuagrbyuagrid',
+	        dataType: 'jsonp',
+	        jsonp: "callback",
+	        jsonpCallback:"successCallback",
+	        data: {
+	               uagrid: $("#uagrid").val()
+	              },
+			success:function(result){
+			    $("#UAgrID").html("参与的合约ID：" + result["UAgrID"]);
+			    $("#UAgrRemainCount").html("剩余优惠次数：" + result["UAgrRemainCount"]);
+			    $("#UAgrRemainMoney").html("剩余金额：" + result["UAgrRemainMoney"]);
+			    $("#AgreementID").html("合约ID：" + result["AgreementID"]);
+			    $("#CardID").html("卡号：" + result["CardID"]);
+			},
+			error:function(e){
+	            //失败执行
+	            alert(e.status+','+ e.statusText);
+        	}
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li><a class="active" href="issuecard.html">发卡</a></li>
+	    <li><a href="querycardbycardid.html">查询卡</a></li>
+	    <li><a href="makeagreement.html">发布合约</a></li>
+	    <li><a href="queryagreementbyrange.html">查询所有合约</a></li>
+	    <li><a href="queryagreementbyagreementid.html">查询合约</a></li>
+	    <li><a href="queryuagrbyrange.html">查询所有参与的合约</a></li>
+	    <li><a href="queryuagrbyuagrid.html">查询参与的合约</a></li>
+	    <li><a href="maketranscation.html">交易</a></li>
+	    <li><a href="querytranscationbycardid.html">查询交易</a></li>
+	</ul>
+
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+		<div id="Header"><center><H1>CardChain-查询参与的合约</H1></center></div>
+        <button id="queryuagrbyuagrid">查询参与的合约</button>
+	    <form>
+	        <fieldset>
+	        	<label>参与的合约ID：</label>
+	        	<input type="text" id="uagrid"></input></br>
+	        </fieldset>
+	    </form>
+        <div class="resultContent">
+        	<div id="UAgrID">执行结果：</div>
+		    <div id="UAgrRemainCount"></div>
+		    <div id="UAgrRemainMoney"></div>
+		    <div id="AgreementID"></div>
+		    <div id="CardID"></div>
+        </div>
+	</div>
+</body>
+</html>

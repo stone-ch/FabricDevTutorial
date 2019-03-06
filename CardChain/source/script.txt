@@ -1,0 +1,81 @@
+cryptogen generate --config=crypto-config.yaml
+
+configtxgen -profile TestOrgsOrdererGenesis -outputBlock ./orderer.genesis.block
+
+export FABRIC_CFG_PATH=$PWD
+
+orderer start >> log/log_orderer.log 2>&1 &
+
+peer node start >> log/log_peer.log 2>&1 &
+
+configtxgen -profile TestOrgsChannel -outputCreateChannelTx ./cardchainchannel.tx -channelID cardchainchannel
+
+configtxgen -profile TestOrgsChannel -outputAnchorPeersUpdate ./OrgBarberMSPanchors.tx -channelID cardchainchannel -asOrg OrgBarberMSP
+
+export CORE_PEER_LOCALMSPID=OrgBarberMSP
+
+export CORE_PEER_ADDRESS=peer0.barber.cystone.me:7051
+
+export CORE_PEER_MSPCONFIGPATH=/home/stone/Documents/TianChi/CardChain/artifacts/channel/crypto-config/peerOrganizations/barber.cystone.me/users/Admin@barber.cystone.me/msp
+
+peer channel create -o orderer.cystone.me:7050 -c cardchainchannel -f cardchainchannel.tx
+
+peer channel join -b cardchainchannel.block
+
+peer channel update -o orderer.cystone.me:7050 -c cardchainchannel -f OrgBarberMSPanchors.tx
+
+peer chaincode package -n cardchaincc -p . -v 0 cardchaincc.out
+
+peer chaincode install -n cardchaincc -v 1.0 -p CardChain
+
+peer chaincode instantiate -o orderer.cystone.me:7050 -C cardchainchannel -n cardchaincc -v 1.0 -c '{"Args":["init"]}'
+
+peer chaincode instantiate -o orderer.cystone.me:7050 -C cardchainchannel -n cardchaincc -v 1.0 -c '{"Args":["init","a","100","b","200"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["query","a"]}'
+
+peer chaincode invoke -n cardchaincc -C cardchainchanne -c '{"Args":["invoke", "a", "b", "10"]}'
+
+peer chaincode list --instantiated --channelID cardchainchannel
+
+Dev Mode:
+export set CORE_PEER_ADDRESS=192.168.1.35:7051
+export set CORE_CHAINCODE_ID_NAME=cardchaincc:0.6
+export set CORE_CHAINCODE_LOGGING_LEVEL=debug
+export set CORE_CHAINCODE_LOGGING_SHIM=debug
+
+./CardChainCC -peer.address=192.168.1.35:7052
+
+CardChain Script:
+
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["issueCard", "OrgBarberMSP1234567890", "0", "0", "10", "20180831170800", "true", "1234567890", "M", "20", "13911112222"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["queryCardByCardID", "OrgBarberMSP1234567890"]}'
+
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["makeAgreement", "OrgBarberMSP", "OrgBarberMSP", "120", "0", "20180902151200", "20190902151200", "充100得120"]}'
+
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["makeAgreement", "OrgBarberMSP", "OrgBarberMSP", "100, 40,40,10,10", "4", "20180902151200", "20190902151200", "100元享受4次原价30元洗头"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["queryAgreementByRange", "OrgBarberMSP"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["queryAgreementByAgreementID", "Agr_OrgBarberMSP100"]}'
+
+// Charge
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["makeTranscation", "OrgBarberMSP1234567890", "20180902151200", "charge", "100", "false", "false", "", "Agr_OrgBarberMSP108", "0", "Barber", "OrgBarberMSP"]}'
+
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["makeTranscation", "OrgBarberMSP1234567890", "20180902151200", "charge", "0", "false", "false", "", "Agr_OrgBarberMSP109", "0", "Barber", "OrgBarberMSP"]}'
+
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["makeTranscation", "OrgBarberMSP1234567890", "20180902151200", "cut hair", "30", "true", "false", "UAgr_OrgBarberMSP1234567890M102", "", "0", "Barber", "OrgBarberMSP"]}'
+
+peer chaincode invoke -n cardchaincc -C cardchainchannel -c '{"Args":["makeTranscation", "OrgBarberMSP1234567890", "20180902151200", "cut hair", "30", "false", "false", "", "", "0", "Barber", "OrgBarberMSP"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["queryUAgrByUAgrID", "OrgBarberMSP1234567890"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["queryUAgrByRange", "OrgBarberMSP1234567890"]}'
+
+peer chaincode query -n cardchaincc -C cardchainchannel -c '{"Args":["queryTranscationByCardID", "OrgBarberMSP1234567890"]}'
+
+// upgrade chaincode
+// old version is cardchaincc:0.6
+peer chaincode install -n cardchaincc -v 0.7 -p CardChain
+peer chaincode upgrade -n cardchaincc -v 0.7 -p CardChain -C cardchainchannel -c '{"Args":["init"]}'

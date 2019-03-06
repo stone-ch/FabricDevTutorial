@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CardChain</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#makeAgreement").click(function(){
+		$.ajax({
+			type:'GET',
+	        url: 'http://localhost:3000/makeagreement',
+	        dataType: 'jsonp',
+	        jsonp: "callback",
+	        jsonpCallback:"successCallback",
+	        data: {
+	        		orgid: $("#agreementdescription").val(),
+	        		agreementorg: $("#agreementorg").val(),
+	        		agreementprice: $("#agreementprice").val(),
+	        		agreementcount: $("#agreementcount").val(),
+	        		agreementcreatetime: $("#agreementcreatetime").val(),
+	        		agreementdeadline: $("#agreementdeadline").val(),
+					agreementdescription: $("#agreementdescription").val(),
+	              },
+			success:function(result){
+				$("#DivOrgID").html("success");
+				// console.log(result)
+    //             if (result == "successCallback()") {
+				//     $("#DivOrgID").html("success");
+    //             } else {
+				//     $("#DivOrgID").html("Card not found");
+    //             }
+			},
+			error:function(e){
+	            //失败执行
+	            alert(e.status+','+ e.statusText);
+        }
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li><a class="active" href="issuecard.html">发卡</a></li>
+	    <li><a href="querycardbycardid.html">查询卡</a></li>
+	    <li><a href="makeagreement.html">发布合约</a></li>
+	    <li><a href="queryagreementbyrange.html">查询所有合约</a></li>
+	    <li><a href="queryagreementbyagreementid.html">查询合约</a></li>
+	    <li><a href="queryuagrbyrange.html">查询所有参与的合约</a></li>
+	    <li><a href="queryuagrbyuagrid.html">查询参与的合约</a></li>
+	    <li><a href="maketranscation.html">交易</a></li>
+	    <li><a href="querytranscationbycardid.html">查询交易</a></li>
+	</ul>
+
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+		<div id="Header"><center><H1>CardChain-发布合约(优惠)</H1></center></div>
+		<button id="makeAgreement">发布合约（优惠）</button>
+	    <form>
+	    	<fieldset>
+	    		<label>组织ID：</label> 
+	    		<select id="orgid">
+					<option value="OrgBarberMSP">OrgBarberMSP</option>
+					<option value="OrgSupermarketMSP">OrgSupermarketMSP</option>>
+				</select></br>
+		        <label>合约组织：</label>
+		        <select id="agreementorg">
+					<option value="OrgBarberMSP">OrgBarberMSP</option>
+					<option value="OrgSupermarketMSP">OrgSupermarketMSP</option>>
+				</select></br>
+		        <label>约定价格：</label> <input type="text" id="agreementprice"></input></br>
+		        <label>约定次数：</label> <input type="text" id="agreementcount"></input></br>
+		        <label>创建时间：</label> <input type="text" id="agreementcreatetime"></input></br>
+		        <label>失效时间：</label> <input type="text" id="agreementdeadline"></input></br>
+		        <label>描述：</label> <input type="text" id="agreementdescription"></input></br>
+	    	</fieldset>
+	        
+	    </form>
+        <dir class="resultContent">
+        	<div id="DivOrgID">执行结果：</div>
+		    <div id="DivAgreementOrg"></div>
+		    <div id="DivAgreementPrice"></div>
+		    <div id="DivAgreementCount"></div>
+		    <div id="DivAgreementCreateTime"></div>
+		    <div id="DivAgreementDeadline"></div>
+		    <div id="DivAgreementDescription"></div>
+        </dir>
+    </div>
+</body>
+</html>

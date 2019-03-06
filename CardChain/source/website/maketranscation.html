@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CardChain</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#maketranscation").click(function(){
+		$.ajax({
+			type:'GET',
+	        url: 'http://localhost:3000/maketranscation',
+	       	dataType: 'jsonp',
+	        jsonp: "callback",
+	        jsonpCallback:"successCallback",
+	        data: {
+	               	cardid: $("#org").val() + $("#cardid").val(),
+	               	txtime: $("#txtime").val(),
+	               	txcontent: $("#txcontent").val(),
+					txtotalprice: $("#txtotalprice").val(),
+	               	txisuseagreement: $("#txisuseagreement").val(),
+	               	useragreementid: $("#useragreementid").val(),
+	               	txisusepoint: $("#txisusepoint").val(),
+	               	agreementid: $("#agreementid").val(),
+	               	numofpointsused: $("#numofpointsused").val(),
+	               	txlocation: $("#txlocation").val(),
+	               	txorg: $("#txorg").val()
+	              },
+			success:function(result){
+				$("#DivCardID").html("Sucess");
+        //         if (result != null) {
+				    // $("#DivCardID").html("Sucess");
+        //         } else {
+				    // $("#DivCardID").html("Card not found");
+        //         }
+			},
+			error:function(e){
+	            //失败执行
+	            alert(e.status+','+ e.statusText);
+        }
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li><a class="active" href="issuecard.html">发卡</a></li>
+	    <li><a href="querycardbycardid.html">查询卡</a></li>
+	    <li><a href="makeagreement.html">发布合约</a></li>
+	    <li><a href="queryagreementbyrange.html">查询所有合约</a></li>
+	    <li><a href="queryagreementbyagreementid.html">查询合约</a></li>
+	    <li><a href="queryuagrbyrange.html">查询所有参与的合约</a></li>
+	    <li><a href="queryuagrbyuagrid.html">查询参与的合约</a></li>
+	    <li><a href="maketranscation.html">交易</a></li>
+	    <li><a href="querytranscationbycardid.html">查询交易</a></li>
+	</ul>
+
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+		<div id="Header"><center><H1>CardChain-进行交易</H1></center></div>
+        <button id="maketranscation">进行交易</button>
+	    <form>
+	    	<fieldset>
+	    		<label>开卡组织：</label>
+	    		<select id="org">
+					<option value="OrgBarberMSP">OrgBarberMSP</option>
+					<option value="OrgSupermarketMSP">OrgSupermarketMSP</option>>
+				</select></br>
+		        <label>卡号：</label> <input type="text" id="cardid"></input></br>
+		        <label>交易时间：</label> <input type="text" id="txtime"></input></br>
+		        <label>交易内容：</label> <input type="text" id="txcontent"></input></br>
+		        <label>总价：</label> <input type="text" id="txtotalprice"></input></br>
+		        <label>是否使用优惠：</label>
+		        <select id="txisuseagreement">
+					<option value="false">NO</option>
+					<option value="true">YES</option>>
+				</select></br>
+		        <label>参与的优惠ID：</label> <input type="text" id="useragreementid"></input> 例如 "UAgr_OrgBarberMSP1234567890M102"</br>
+		        <label>是否使用积分：</label>
+		        <select id="txisusepoint">
+					<option value="false">NO</option>
+					<option value="true">YES</option>>
+				</select></br>
+		        <label>合约ID：</label> <input type="text" id="agreementid"></input> 例如 "Agr_OrgBarberMSP109"</br>
+		        <label>使用积分数量：</label> <input type="text" id="numofpointsused"></input></br>
+		        <label>交易地址：</label> <input type="text" id="txlocation"></input></br>
+		        <label>交易商家：</label> 
+		        <select id="txorg">
+					<option value="OrgBarberMSP">OrgBarberMSP</option>
+					<option value="OrgSupermarketMSP">OrgSupermarketMSP</option>>
+				</select></br>
+	        </fieldset>
+	    </form>
+        <div class="resultContent">
+        	<div id="DivCardID">执行结果：</div>
+		    <div id="DivTxTime"></div>
+		    <div id="DivTxContent"></div>
+		    <div id="DivTxTotalPrice"></div>
+		    <div id="DivTxIsUseAgreement"></div>
+		    <div id="DivTxIsUsePoint"></div>
+		    <div id="DivUserAgreementID"></div>
+		    <div id="DivAgreementID"></div>
+		    <div id="DivNumOfPointsUsed"></div>
+		    <div id="DivTxLocation"></div>
+		    <div id="DivTxOrg"></div>
+        </div>
+	</div>
+</body>
+</html>

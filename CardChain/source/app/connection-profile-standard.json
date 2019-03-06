@@ -1,0 +1,192 @@
+{
+    "version": "1.0.0",
+    "peers": {
+        "peer1.barbermsp.aliyunbaas.com:31111": {
+            "url": "grpcs://peer1.barbermsp.aliyunbaas.com:31111",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcegAwIBAgIUUaRAzXyrMnhvToJvR9PDmLnZTPswCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTEWMBQGA1UEChMNQWxpYmFiYSBDbG91ZDEgMB4GA1UEAxMXRmFicmljLUNB\nIFRMUyBSb290IENlcnQwHhcNMTgwOTAzMTU0MTAwWhcNMzgwODI5MTU0MTAwWjBt\nMQswCQYDVQQGEwJDTjERMA8GA1UECBMIWmhlamlhbmcxETAPBgNVBAcTCEhhbmd6\naG91MRYwFAYDVQQKEw1BbGliYWJhIENsb3VkMSAwHgYDVQQDExdGYWJyaWMtQ0Eg\nVExTIFJvb3QgQ2VydDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABM18O9i8xtB0\n76eR5/qAPUyBftZPV8oieO/yWrdI0SoeWbvaVkyxuLiXhOvT9zi3uPzRrK6bS17z\n2pXkoK58EvOjRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBTfBg9+0aA/o8XNJJyVVGkAXC/82jAKBggqhkjOPQQDAgNIADBF\nAiEApc04U83YFQuaxii6dPQQ9AXiZsUJOmriPMrXzFKTCqMCIBPh8vSF9FuGT38i\nfNXmcyo1VuSnllvwCGFkaRp9b3cT\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "peer1.barbermsp.aliyunbaas.com"
+            },
+            "eventUrl": "grpcs://peer1.barbermsp.aliyunbaas.com:31113"
+        },
+        "peer2.supermarketmsp.aliyunbaas.com:31221": {
+            "url": "grpcs://peer2.supermarketmsp.aliyunbaas.com:31221",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcegAwIBAgIURZrSYHUKqd4rIayBTEPj3TiwhGEwCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTEWMBQGA1UEChMNQWxpYmFiYSBDbG91ZDEgMB4GA1UEAxMXRmFicmljLUNB\nIFRMUyBSb290IENlcnQwHhcNMTgwOTAzMTU0MTAwWhcNMzgwODI5MTU0MTAwWjBt\nMQswCQYDVQQGEwJDTjERMA8GA1UECBMIWmhlamlhbmcxETAPBgNVBAcTCEhhbmd6\naG91MRYwFAYDVQQKEw1BbGliYWJhIENsb3VkMSAwHgYDVQQDExdGYWJyaWMtQ0Eg\nVExTIFJvb3QgQ2VydDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABMxQrBwWRtgg\nb3wn7I8L0+KGqwCdPotg3yfl0lSxBr/vDK/wwY9vOwkIo36QilVZywZGd+b6L5yo\nC8z7yVbyXDajRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBS0h9EwLQjwpgI9uYTTJ8H6q/TAwTAKBggqhkjOPQQDAgNIADBF\nAiEAndQOCG71F4R7pAWh/eAti1gkJQQg9UuWZsdwoUmzxQsCIA3nIy+Wflr8SyNZ\nd6HOXhIAElNx9okQ9cJpHcOJtL5n\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "peer2.supermarketmsp.aliyunbaas.com"
+            }
+        },
+        "peer2.barbermsp.aliyunbaas.com:31121": {
+            "url": "grpcs://peer2.barbermsp.aliyunbaas.com:31121",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcegAwIBAgIUUaRAzXyrMnhvToJvR9PDmLnZTPswCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTEWMBQGA1UEChMNQWxpYmFiYSBDbG91ZDEgMB4GA1UEAxMXRmFicmljLUNB\nIFRMUyBSb290IENlcnQwHhcNMTgwOTAzMTU0MTAwWhcNMzgwODI5MTU0MTAwWjBt\nMQswCQYDVQQGEwJDTjERMA8GA1UECBMIWmhlamlhbmcxETAPBgNVBAcTCEhhbmd6\naG91MRYwFAYDVQQKEw1BbGliYWJhIENsb3VkMSAwHgYDVQQDExdGYWJyaWMtQ0Eg\nVExTIFJvb3QgQ2VydDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABM18O9i8xtB0\n76eR5/qAPUyBftZPV8oieO/yWrdI0SoeWbvaVkyxuLiXhOvT9zi3uPzRrK6bS17z\n2pXkoK58EvOjRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBTfBg9+0aA/o8XNJJyVVGkAXC/82jAKBggqhkjOPQQDAgNIADBF\nAiEApc04U83YFQuaxii6dPQQ9AXiZsUJOmriPMrXzFKTCqMCIBPh8vSF9FuGT38i\nfNXmcyo1VuSnllvwCGFkaRp9b3cT\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "peer2.barbermsp.aliyunbaas.com"
+            },
+            "eventUrl": "grpcs://peer2.barbermsp.aliyunbaas.com:31123"
+        },
+        "peer1.supermarketmsp.aliyunbaas.com:31211": {
+            "url": "grpcs://peer1.supermarketmsp.aliyunbaas.com:31211",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcegAwIBAgIURZrSYHUKqd4rIayBTEPj3TiwhGEwCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTEWMBQGA1UEChMNQWxpYmFiYSBDbG91ZDEgMB4GA1UEAxMXRmFicmljLUNB\nIFRMUyBSb290IENlcnQwHhcNMTgwOTAzMTU0MTAwWhcNMzgwODI5MTU0MTAwWjBt\nMQswCQYDVQQGEwJDTjERMA8GA1UECBMIWmhlamlhbmcxETAPBgNVBAcTCEhhbmd6\naG91MRYwFAYDVQQKEw1BbGliYWJhIENsb3VkMSAwHgYDVQQDExdGYWJyaWMtQ0Eg\nVExTIFJvb3QgQ2VydDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABMxQrBwWRtgg\nb3wn7I8L0+KGqwCdPotg3yfl0lSxBr/vDK/wwY9vOwkIo36QilVZywZGd+b6L5yo\nC8z7yVbyXDajRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBS0h9EwLQjwpgI9uYTTJ8H6q/TAwTAKBggqhkjOPQQDAgNIADBF\nAiEAndQOCG71F4R7pAWh/eAti1gkJQQg9UuWZsdwoUmzxQsCIA3nIy+Wflr8SyNZ\nd6HOXhIAElNx9okQ9cJpHcOJtL5n\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "peer1.supermarketmsp.aliyunbaas.com"
+            }
+        }
+    },
+    "organizations": {
+        "barbermspMSP": {
+            "peers": ["peer1.barbermsp.aliyunbaas.com:31111", "peer2.barbermsp.aliyunbaas.com:31121"],
+            "mspid": "barbermspMSP",
+            "cryptoPath": "/tmp/msp",
+            "certificateAuthorities": ["ca1.barbermsp.aliyunbaas.com"]
+        },
+        "supermarketmspMSP": {
+            "peers": ["peer1.supermarketmsp.aliyunbaas.com:31211", "peer2.supermarketmsp.aliyunbaas.com:31221"],
+            "mspid": "supermarketmspMSP",
+            "cryptoPath": "/tmp/msp",
+            "certificateAuthorities": []
+        }
+    },
+    "orderers": {
+        "orderer1": {
+            "url": "grpcs://orderer1.cardchain.aliyunbaas.com:31010",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICGDCCAb+gAwIBAgIUbtPvUZIDp4TxRgElp8CmrmKAsbwwCgYIKoZIzj0EAwIw\naTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTESMBAGA1UEChMJY2FyZGNoYWluMSAwHgYDVQQDExdjYXJkY2hhaW4gVExT\nIFJvb3QgQ2VydDAeFw0xODA5MDMxNTQ1MDBaFw0zODA4MjkxNTQ1MDBaMGkxCzAJ\nBgNVBAYTAkNOMREwDwYDVQQIEwhaaGVqaWFuZzERMA8GA1UEBxMISGFuZ3pob3Ux\nEjAQBgNVBAoTCWNhcmRjaGFpbjEgMB4GA1UEAxMXY2FyZGNoYWluIFRMUyBSb290\nIENlcnQwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAS/GD+CIK2me5Wcd46uwPG4\nCtyi7HEuCkgVbUMSZjp6m3UUpYpMjWxZVmxl6CdA2Ohko6f4Jbci6rpc7sOzgfpK\no0UwQzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4E\nFgQUfAcBu2UK7suKOYr+eoSpMRFskI0wCgYIKoZIzj0EAwIDRwAwRAIgGrzJexf3\nirbTFBijqL9EgPM8jR9dwBCN+dKKsKiAzDACIGi3TTJU04NVs1dpzPmnZd64Vq/g\nc7DV4B4KPea+YrOA\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "orderer1.cardchain.aliyunbaas.com"
+            }
+        },
+        "orderer2": {
+            "url": "grpcs://orderer2.cardchain.aliyunbaas.com:31020",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICGDCCAb+gAwIBAgIUbtPvUZIDp4TxRgElp8CmrmKAsbwwCgYIKoZIzj0EAwIw\naTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTESMBAGA1UEChMJY2FyZGNoYWluMSAwHgYDVQQDExdjYXJkY2hhaW4gVExT\nIFJvb3QgQ2VydDAeFw0xODA5MDMxNTQ1MDBaFw0zODA4MjkxNTQ1MDBaMGkxCzAJ\nBgNVBAYTAkNOMREwDwYDVQQIEwhaaGVqaWFuZzERMA8GA1UEBxMISGFuZ3pob3Ux\nEjAQBgNVBAoTCWNhcmRjaGFpbjEgMB4GA1UEAxMXY2FyZGNoYWluIFRMUyBSb290\nIENlcnQwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAS/GD+CIK2me5Wcd46uwPG4\nCtyi7HEuCkgVbUMSZjp6m3UUpYpMjWxZVmxl6CdA2Ohko6f4Jbci6rpc7sOzgfpK\no0UwQzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4E\nFgQUfAcBu2UK7suKOYr+eoSpMRFskI0wCgYIKoZIzj0EAwIDRwAwRAIgGrzJexf3\nirbTFBijqL9EgPM8jR9dwBCN+dKKsKiAzDACIGi3TTJU04NVs1dpzPmnZd64Vq/g\nc7DV4B4KPea+YrOA\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "orderer2.cardchain.aliyunbaas.com"
+            }
+        },
+        "orderer3": {
+            "url": "grpcs://orderer3.cardchain.aliyunbaas.com:31030",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICGDCCAb+gAwIBAgIUbtPvUZIDp4TxRgElp8CmrmKAsbwwCgYIKoZIzj0EAwIw\naTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTESMBAGA1UEChMJY2FyZGNoYWluMSAwHgYDVQQDExdjYXJkY2hhaW4gVExT\nIFJvb3QgQ2VydDAeFw0xODA5MDMxNTQ1MDBaFw0zODA4MjkxNTQ1MDBaMGkxCzAJ\nBgNVBAYTAkNOMREwDwYDVQQIEwhaaGVqaWFuZzERMA8GA1UEBxMISGFuZ3pob3Ux\nEjAQBgNVBAoTCWNhcmRjaGFpbjEgMB4GA1UEAxMXY2FyZGNoYWluIFRMUyBSb290\nIENlcnQwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAS/GD+CIK2me5Wcd46uwPG4\nCtyi7HEuCkgVbUMSZjp6m3UUpYpMjWxZVmxl6CdA2Ohko6f4Jbci6rpc7sOzgfpK\no0UwQzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4E\nFgQUfAcBu2UK7suKOYr+eoSpMRFskI0wCgYIKoZIzj0EAwIDRwAwRAIgGrzJexf3\nirbTFBijqL9EgPM8jR9dwBCN+dKKsKiAzDACIGi3TTJU04NVs1dpzPmnZd64Vq/g\nc7DV4B4KPea+YrOA\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "allow-insecure": false,
+                "fail-fast": false,
+                "keep-alive-permit": false,
+                "keep-alive-time": "0s",
+                "keep-alive-timeout": "20s",
+                "ssl-target-name-override": "orderer3.cardchain.aliyunbaas.com"
+            }
+        }
+    },
+    "name": "Aliyun-Baas-Config",
+    "description": "The network generated by aliyun BaaS.",
+    "client": {
+        "organization": "barbermspMSP",
+        "logging": {
+            "level": "info"
+        },
+        "credentialStore": {
+            "path": "/tmp/msp/signcerts",
+            "cryptoStore": {
+                "path": "/tmp/msp"
+            }
+        },
+        "BCCSP": {
+            "security": {
+                "default": {
+                    "provider": "SW"
+                },
+                "level": 256,
+                "softVerify": true,
+                "enabled": true,
+                "hashAlgorithm": "SHA2"
+            }
+        }
+    },
+    "channels": {
+        "first-channel": {
+            "peers": {
+                "peer1.barbermsp.aliyunbaas.com:31111": {
+                    "chaincodeQuery": true,
+                    "endorsingPeer": true,
+                    "eventSource": true,
+                    "ledgerQuery": true
+                },
+                "peer1.supermarketmsp.aliyunbaas.com:31211": {
+                    "chaincodeQuery": true,
+                    "endorsingPeer": true,
+                    "eventSource": true,
+                    "ledgerQuery": true
+                },
+                "peer2.barbermsp.aliyunbaas.com:31121": {
+                    "chaincodeQuery": true,
+                    "endorsingPeer": true,
+                    "eventSource": true,
+                    "ledgerQuery": true
+                },
+                "peer2.supermarketmsp.aliyunbaas.com:31221": {
+                    "chaincodeQuery": true,
+                    "endorsingPeer": true,
+                    "eventSource": true,
+                    "ledgerQuery": true
+                }
+            },
+            "orderers": ["orderer1", "orderer2", "orderer3"]
+        }
+    },
+    "certificateAuthorities": {
+        "ca1.barbermsp.aliyunbaas.com": {
+            "url": "https://ca1.barbermsp.aliyunbaas.com:31154",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcegAwIBAgIUUaRAzXyrMnhvToJvR9PDmLnZTPswCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCQ04xETAPBgNVBAgTCFpoZWppYW5nMREwDwYDVQQHEwhIYW5n\nemhvdTEWMBQGA1UEChMNQWxpYmFiYSBDbG91ZDEgMB4GA1UEAxMXRmFicmljLUNB\nIFRMUyBSb290IENlcnQwHhcNMTgwOTAzMTU0MTAwWhcNMzgwODI5MTU0MTAwWjBt\nMQswCQYDVQQGEwJDTjERMA8GA1UECBMIWmhlamlhbmcxETAPBgNVBAcTCEhhbmd6\naG91MRYwFAYDVQQKEw1BbGliYWJhIENsb3VkMSAwHgYDVQQDExdGYWJyaWMtQ0Eg\nVExTIFJvb3QgQ2VydDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABM18O9i8xtB0\n76eR5/qAPUyBftZPV8oieO/yWrdI0SoeWbvaVkyxuLiXhOvT9zi3uPzRrK6bS17z\n2pXkoK58EvOjRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBTfBg9+0aA/o8XNJJyVVGkAXC/82jAKBggqhkjOPQQDAgNIADBF\nAiEApc04U83YFQuaxii6dPQQ9AXiZsUJOmriPMrXzFKTCqMCIBPh8vSF9FuGT38i\nfNXmcyo1VuSnllvwCGFkaRp9b3cT\n-----END CERTIFICATE-----\n"
+            },
+            "registrar": [
+                    {
+                        "enrollId": "barberuser1",
+                        "enrollSecret": "barberuser1"
+                    }
+              ],
+            "caName": "client"
+        }
+    }
+}

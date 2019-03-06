@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CardChain</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#IssueCard").click(function(){
+		$.ajax({
+			type:'GET',
+	        url: 'http://localhost:3000/issuecard',
+	       	dataType: 'jsonp',
+	        jsonp: "callback",
+	        jsonpCallback:"successCallback",
+	        data: {
+	               	cardid: $("#org").val() + $("#cardid").val(),
+	               	cardbalance: $("#cardbalance").val(),
+	               	cardpoints: $("#cardpoints").val(),
+					cardpointsbase: $("#cardpointsbase").val(),
+	               	cardcreatetime: $("#cardcreatetime").val(),
+	               	cardstate: 1,//$("#cardstate").val(),
+	               	customerid: $("#customerid").val(),
+	               	customergender: $("#customergender").val(),
+	               	customerage: $("#customerage").val(),
+	               	customertel: $("#customertel").val()
+	              },
+			success:function(result){
+				$("#DivCardID").html("Sucess");
+        //         if (result != null) {
+				    // $("#DivCardID").html("Sucess");
+        //         } else {
+				    // $("#DivCardID").html("Card not found");
+        //         }
+			},
+			error:function(e){
+	            //失败执行
+	            alert(e.status+','+ e.statusText);
+        }
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+	<ul>
+		<li><a class="active" href="issuecard.html">发卡</a></li>
+	    <li><a href="querycardbycardid.html">查询卡</a></li>
+	    <li><a href="makeagreement.html">发布合约</a></li>
+	    <li><a href="queryagreementbyrange.html">查询所有合约</a></li>
+	    <li><a href="queryagreementbyagreementid.html">查询合约</a></li>
+	    <li><a href="queryuagrbyrange.html">查询所有参与的合约</a></li>
+	    <li><a href="queryuagrbyuagrid.html">查询参与的合约</a></li>
+	    <li><a href="maketranscation.html">交易</a></li>
+	    <li><a href="querytranscationbycardid.html">查询交易</a></li>
+	</ul>
+
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+		<div id="Header"><center><H1>CardChain-发布卡片</H1></center></div>
+		<button id="IssueCard">发布卡片</button>
+	    <form>
+	    	<fieldset>
+	    		<label>开卡组织：</label>
+	    		<select id="org">
+					<option value="OrgBarberMSP">OrgBarberMSP</option>
+					<option value="OrgSupermarketMSP">OrgSupermarketMSP</option>>
+				</select></br>
+		        <label>开号：</label> <input type="text" id="cardid"></input></br>
+		        <label>余额：</label> <input type="text" id="cardbalance" value="0"></input></br>
+		        <label>积分：</label> <input type="text" id="cardpoints" value="0"></input></br>
+		        <label>积分基数：</label> <input type="text" id="cardpointsbase" value="10"></input></br>
+		        <label>开卡时间：</label> <input type="text" id="cardcreatetime"></input> 格式为 "20190902151200"</br>
+		        <label>卡状态：</label> <input type="text" id="cardstate" value="1"></input></br>
+		        <label>客户ID：</label> <input type="text" id="customerid"></input></br>
+		        <label>客户性别：</label> <input type="text" id="customergender"></input></br>
+		        <label>客户年龄：</label> <input type="text" id="customerage"></input></br>
+		        <label>客户电话：</label> <input type="text" id="customertel"></input></br>
+	        </fieldset>
+	    </form>
+	    <div class="resultContent">
+	    	<div id="DivCardID">执行结果：</div>
+		    <div id="DivCardBalance"></div>
+		    <div id="DivCardPoints"></div>
+		    <div id="DivCardPointsBase"></div>
+		    <div id="DivCardCreateTime"></div>
+		    <div id="DivCardState"></div>
+		    <div id="DivCustomerID"></div>
+		    <div id="DivCustomerGender"></div>
+		    <div id="DivCustomerAge"></div>
+		    <div id="DivCustomerTEL"></div>
+	    </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CardChain</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#IssueCard").click(function(){
+		$.ajax({
+			type:'GET',
+	        url: 'http://localhost:3000/issuecard',
+	       	dataType: 'jsonp',
+	        jsonp: "callback",
+	        jsonpCallback:"successCallback",
+	        data: {
+	               	cardid: $("#cardid").val(),
+	               	cardbalance: $("#cardbalance").val(),
+	               	cardpoints: $("#cardpoints").val(),
+					cardpointsbase: $("#cardpointsbase").val(),
+	               	cardcreatetime: $("#cardcreatetime").val(),
+	               	cardstate: $("#cardstate").val(),
+	               	customerid: $("#customerid").val(),
+	               	customergender: $("#customergender").val(),
+	               	customerage: $("#customerage").val(),
+	               	customertel: $("#customertel").val()
+	              },
+			success:function(result){
+				$("#DivCardID").html("Sucess");
+        //         if (result != null) {
+				    // $("#DivCardID").html("Sucess");
+        //         } else {
+				    // $("#DivCardID").html("Card not found");
+        //         }
+			},
+			error:function(e){
+	            //失败执行
+	            alert(e.status+','+ e.statusText);
+        }
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+	<ul>
+		<li><a class="active" href="issuecard.html">发卡</a></li>
+	    <li><a href="querycardbycardid.html">查询卡</a></li>
+	    <li><a href="makeagreement.html">发布合约</a></li>
+	    <li><a href="queryagreementbyrange.html">查询所有合约</a></li>
+	    <li><a href="queryagreementbyagreementid.html">查询合约</a></li>
+	    <li><a href="queryuagrbyrange.html">查询所有参与的合约</a></li>
+	    <li><a href="queryuagrbyuagrid.html">查询参与的合约</a></li>
+	    <li><a href="maketranscation.html">交易</a></li>
+	    <li><a href="querytranscationbycardid.html">查询交易</a></li>
+	</ul>
+
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+		<div id="Header"><center><H1>Welcom CardChain</H1></center></div>
+
+	    <div>欢迎使用CardChain</div>
+	    
+	</div>
+</body>
+</html>
