@@ -16,38 +16,38 @@ Organizations:
 
     # SampleOrg defines an MSP using the sampleconfig. It should never be used
     # in production but may be used as a template for other definitions.
-    - &OrdererOrgA
+    - &OrdererMarket0
         # Name is the key by which this org will be referenced in channel
         # configuration transactions.
         # Name can include alphanumeric characters as well as dots and dashes.
-        Name: OrdererOrgA
+        Name: OrdererMarket0
 
         # ID is the key by which this org's MSP definition will be referenced.
         # ID can include alphanumeric characters as well as dots and dashes.
-        ID: OrdererOrgA
+        ID: OrdererMarket0
 
         # MSPDir is the filesystem path which contains the MSP configuration.
-        MSPDir: ./crypto-config/ordererOrganizations/orga.atlchain.com/msp
+        MSPDir: ./crypto-config/ordererOrganizations/market.cardchain.com/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
         #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
-        Policies: &OrdererOrgAPolicies
+        Policies: &OrdererMarket0Policies
             Readers:
                 Type: Signature
-                Rule: "OR('OrdererOrgA.member')" 
+                Rule: "OR('OrdererMarket0.member','OrdererMarket0.peer', 'OrdererMarket0.client')" 
                 # If your MSP is configured with the new NodeOUs, you might
                 # want to use a more specific rule like the following:
                 # Rule: "OR('SampleOrg.admin', 'SampleOrg.peer', 'SampleOrg.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('OrdererOrgA.member')" 
+                Rule: "OR('OrdererMarket0.member', 'OrdererMarket0.client')" 
                 # If your MSP is configured with the new NodeOUs, you might
                 # want to use a more specific rule like the following:
                 # Rule: "OR('SampleOrg.admin', 'SampleOrg.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('OrdererOrgA.admin')"
+                Rule: "OR('OrdererMarket0.admin')"
 
         # AnchorPeers defines the location of peers which can be used for
         # cross-org gossip communication. Note, this value is only encoded in
@@ -56,67 +56,67 @@ Organizations:
         #     - Host: 127.0.0.1
         #       Port: 7051
 
-    - &OrdererOrgB
-        Name: OrdererOrgB
+    - &OrdererBarber0
+        Name: OrdererBarber0
     
-        ID: OrdererOrgB
+        ID: OrdererBarber0
     
-        MSPDir: ./crypto-config/ordererOrganizations/orgb.atlchain.com/msp
+        MSPDir: ./crypto-config/ordererOrganizations/barber.cardchain.com/msp
     
-        Policies: &OrdererOrgBPolicies
+        Policies: &OrdererBarber0Policies
             Readers:
                 Type: Signature
-                Rule: "OR('OrdererOrgB.member')" 
+                Rule: "OR('OrdererBarber0.admin', 'OrdererBarber0.peer', 'OrdererBarber0.client')" 
 
             Writers:
                 Type: Signature
-                Rule: "OR('OrdererOrgB.member')" 
+                Rule: "OR('OrdererBarber0.admin', 'OrdererBarber0.client')" 
 
             Admins:
                 Type: Signature
-                Rule: "OR('OrdererOrgB.admin')"
+                Rule: "OR('OrdererBarber0.admin')"
               
-    - &OrgA
-        Name: OrgA
+    - &OrgMarket
+        Name: OrgMarket
     
-        ID: OrgA
+        ID: OrgMarket
     
-        MSPDir: ./crypto-config/peerOrganizations/orga.atlchain.com/msp
+        MSPDir: ./crypto-config/peerOrganizations/market.cardchain.com/msp
     
-        Policies: &OrgAPolicies
+        Policies: &OrgMarketPolicies
             Readers:
                 Type: Signature
-                Rule: "OR('OrgA.member')"
+                Rule: "OR('OrgMarket.admin', 'OrgMarket.peer', 'OrgMarket.client')"
 
             Writers:
                 Type: Signature
-                Rule: "OR('OrgA.member')"
+                Rule: "OR('OrgMarket.admin', 'OrgMarket.client')"
 
             Admins:
                 Type: Signature
-                Rule: "OR('OrgA.admin')"
+                Rule: "OR('OrgMarket.admin')"
     
         AnchorPeers:
             - Host: 127.0.0.1
               Port: 7051
     
-    - &OrgB
-        Name: OrgB
+    - &OrgBarber
+        Name: OrgBarber
 
-        ID: OrgB
+        ID: OrgBarber
 
-        MSPDir: ./crypto-config/peerOrganizations/orgb.atlchain.com/msp
+        MSPDir: ./crypto-config/peerOrganizations/barber.cardchain.com/msp
 
-        Policies: &OrgBPolicies
+        Policies: &OrgBarberPolicies
             Readers:
                 Type: Signature
-                Rule: "OR('OrgB.member')"
+                Rule: "OR('OrgBarber.admin', 'OrgBarber.peer', 'OrgBarber.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('OrgB.member')"
+                Rule: "OR('OrgBarber.admin', 'OrgBarber.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('OrgB.admin')"
+                Rule: "OR('OrgBarber.admin')"
 
         AnchorPeers:
             - Host: 127.0.0.1
@@ -570,32 +570,32 @@ Profiles:
             <<: *OrdererDefaults
             # OrdererType: kafka
             Organizations:
-                - <<: *OrdererOrgA
-                - <<: *OrdererOrgB
+                - <<: *OrdererMarket0
+                - <<: *OrdererBarber0
                   Policies:
-                      <<: *OrdererOrgAPolicies
-                      <<: *OrdererOrgBPolicies
+                      <<: *OrdererMarket0Policies
+                      <<: *OrdererBarber0Policies
                       Admins:
                           Type: Signature
-                          Rule: "OR('OrdererOrgA.admin', 'OrdererOrgB.admin')"
+                          Rule: "OR('OrdererMarket0.admin', 'OrdererBarber0.admin')"
                          
         Consortiums:
             SampleConsortium:
                 Organizations:
-                    - <<: *OrgA
-                    - <<: *OrgB
+                    - <<: *OrgMarket
+                    - <<: *OrgBarber
                       Policies:
-                          <<: *OrgAPolicies
-                          <<: *OrgBPolicies
+                          <<: *OrgMarketPolicies
+                          <<: *OrgBarberPolicies
                           Admins:
                               Type: Signature
-                              Rule: "OR('OrgA.admin', 'OrgB.admin')"
+                              Rule: "OR('OrgMarket.admin', 'OrgBarber.admin')"
                           
-    ## TxChannel Genesis Block
-    TxChannel:
+    ## CardChannel Genesis Block
+    CardChannel:
         Consortium: SampleConsortium
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - <<: *OrgA
-                - <<: *OrgB
+                - <<: *OrgMarket
+                - <<: *OrgBarber
