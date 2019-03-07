@@ -20,21 +20,21 @@ then
 
     rm -rf ./production
 
-    # rm -rf ./crypto-config
+    rm -rf ./crypto-config
 
 elif [ $1 = s1 ]
 then
-    # echo "### configtxgen -profile OrdererOrg -outputBlock orderer.genesis.block ###"
-    # cryptogen generate --config=crypto-config.yaml
+    echo "### configtxgen -profile OrdererOrg -outputBlock orderer.genesis.block ###"
+    cryptogen generate --config=crypto-config.yaml
 
     echo "### configtxgen -profile OrdererChannel -outputBlock genesisblock ###"
     configtxgen -profile OrdererChannel -outputBlock genesisblock -channelID ordererchannel
 
-    echo "### nohup orderer start > orderer.log 2>&1 & ###"
-    nohup orderer start > orderer.log 2>&1 &
+    # echo "### nohup orderer start > orderer.log 2>&1 & ###"
+    # nohup orderer start > orderer.log 2>&1 &
 
-    echo "### nohup peer node start > peer.log 2>&1 & ###"
-    nohup peer node start > peer.log 2>&1 &
+    # echo "### nohup peer node start > peer.log 2>&1 & ###"
+    # nohup peer node start > peer.log 2>&1 &
 
     echo "### Finish stage 1 ###"
 

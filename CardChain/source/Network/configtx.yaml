@@ -35,13 +35,13 @@ Organizations:
         Policies: &OrdererMarket0Policies
             Readers:
                 Type: Signature
-                Rule: "OR('OrdererMarket0.member','OrdererMarket0.peer', 'OrdererMarket0.client')" 
+                Rule: "OR('OrdererMarket0.member')" 
                 # If your MSP is configured with the new NodeOUs, you might
                 # want to use a more specific rule like the following:
                 # Rule: "OR('SampleOrg.admin', 'SampleOrg.peer', 'SampleOrg.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('OrdererMarket0.member', 'OrdererMarket0.client')" 
+                Rule: "OR('OrdererMarket0.member')" 
                 # If your MSP is configured with the new NodeOUs, you might
                 # want to use a more specific rule like the following:
                 # Rule: "OR('SampleOrg.admin', 'SampleOrg.client')"
@@ -66,11 +66,11 @@ Organizations:
         Policies: &OrdererBarber0Policies
             Readers:
                 Type: Signature
-                Rule: "OR('OrdererBarber0.admin', 'OrdererBarber0.peer', 'OrdererBarber0.client')" 
+                Rule: "OR('OrdererBarber0.member')" 
 
             Writers:
                 Type: Signature
-                Rule: "OR('OrdererBarber0.admin', 'OrdererBarber0.client')" 
+                Rule: "OR('OrdererBarber0.member')" 
 
             Admins:
                 Type: Signature
